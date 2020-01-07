@@ -17,7 +17,7 @@ export const loginUser = (data, history) => {
   return dispatch => {
     dispatch({ type: LOGIN_START });
     return axiosWithAuth()
-      .post('api/login', data)
+      .post('api/login/', data)
       .then(res => {
 
         localStorage.setItem('token', res.data.token);
@@ -30,7 +30,7 @@ export const loginUser = (data, history) => {
         //Mixpanel.track('Login Error');
         dispatch({
           type: LOGIN_FAILURE,
-          payload: err.response.data.message ? err.response.data.message : ERROR
+          payload: err ? err : ERROR
         });
       });
   };
@@ -39,7 +39,7 @@ export const loginUser = (data, history) => {
 export const registerUser = data => dispatch => {
   dispatch({ type: REGISTER_USER_START });
   return axiosWithAuth()
-    .post('/api/register', data)
+    .post('/api/register/', data)
     .then(res => {
       // Mixpanel.track('Register Success');
       dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data });
