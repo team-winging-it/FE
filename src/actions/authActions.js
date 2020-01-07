@@ -13,17 +13,20 @@ const {
 } = types;
 
 export const loginUser = (data, history) => {
+  console.log("data:", data)
   return dispatch => {
     dispatch({ type: LOGIN_START });
     return axiosWithAuth()
       .post('api/login', data)
       .then(res => {
+
         localStorage.setItem('token', res.data.token);
         //Mixpanel.track('Login Success');
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         history.push('/dashboard');
       })
       .catch(err => {
+        console.log("error:", err)
         //Mixpanel.track('Login Error');
         dispatch({
           type: LOGIN_FAILURE,
