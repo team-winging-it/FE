@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import {userReducer} from './reducers/index.js';
+import combineReducers from './reducers/index.js';
 // Import redux persist
 import storage from 'redux-persist/lib/storage';
 import {persistStore, persistReducer} from 'redux-persist';
@@ -20,7 +20,7 @@ const persistConfig = {
 }
 
 //Persist combined reducers
-const persistedReducer = persistReducer(persistConfig, userReducer)
+const persistedReducer = persistReducer(persistConfig, combineReducers)
 //Store now has access to persisted reducers
 const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
 

@@ -1,22 +1,8 @@
+import {combineReducers} from "redux";
 
+import authReducer from "./authReducer";
 
-const initialState = {
-  id: ' ',
-  firstName: '',
-  lastName: '',
-  email: '',
-  username: '',
-};
+export default combineReducers({
+    authReducer,
 
-export const userReducer = (state = initialState, action) => {
-  switch (action.type){
-
-
-
-
-
-
-  default:
-  return{...state}
-  }
-}
+});
