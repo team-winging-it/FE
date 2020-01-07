@@ -13,20 +13,19 @@ const {
 } = types;
 
 export const loginUser = (data, history) => {
-  console.log("data:", data)
   return dispatch => {
     dispatch({ type: LOGIN_START });
     return axiosWithAuth()
       .post('api/login/', data)
       .then(res => {
 
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('token', res.data.key);
         //Mixpanel.track('Login Success');
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         history.push('/dashboard');
       })
       .catch(err => {
-        console.log("error:", err)
+        console.log('error:', err);
         //Mixpanel.track('Login Error');
         dispatch({
           type: LOGIN_FAILURE,
@@ -36,13 +35,17 @@ export const loginUser = (data, history) => {
   };
 };
 
-export const registerUser = data => dispatch => {
+export const registerUser = (data, history) => dispatch => {
+  console.log('data:', data);
   dispatch({ type: REGISTER_USER_START });
   return axiosWithAuth()
-    .post('/api/register/', data)
+    .post('api/registration/', data)
     .then(res => {
       // Mixpanel.track('Register Success');
+      localStorage.setItem('token', res.data.key);
       dispatch({ type: REGISTER_USER_SUCCESS, payload: res.data });
+      history.push(`/dashboard`);
+
     })
     .catch(err => {
       // Mixpanel.track('Login Failed');
