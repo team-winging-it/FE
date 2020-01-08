@@ -8,9 +8,7 @@ import Login from "../auth/login"
 const LandingPage = props => {
 
   const handleLogin = () => {
-    let path = {Login};
-    let history = useHistory();
-    history.push(path);
+    
 
   }
 
