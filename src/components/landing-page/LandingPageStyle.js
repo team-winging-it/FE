@@ -10,15 +10,26 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+
+
 export const Card = styled.div`
   background: #fff;
   border-radius: 2px;
   display: inline-block;
-  height: 700px;
-  margin: 1rem;
+  height: 100vh;
+  // margin: 1rem;
   position: relative;
   width: 1250px;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 10px 9px rgba(0, 0, 0, 0.22);
+  .new-card{
+    width:300px;
+    height: 500px;
+    margin-top:100px;
+    margin-left: 10px;
+  }
+  .new-card:hover{
+    box-shadow: none;
+  }
 `;
 
 export const Nav = styled.div`
@@ -27,11 +38,21 @@ export const Nav = styled.div`
   display: inline-block;
   height: 70px;
   top: 0px;
-  margin-top: 0.5rem;
+  
   margin-bottom: 1rem;
   position: fixed;
-  width: 95%;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 3px 8px rgba(0, 0, 0, 0.22);
+  .submit-btn{
+    margin-left: 20px;
+    background: #000;
+
+  }
+  .submit-btn:hover{
+    background: blue;
+    
+  }
 `;
 
 export const SubmitWrapper = styled.div`
