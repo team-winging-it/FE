@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import logo from './logo.svg';
 import {ThemeProvider} from 'pcln-design-system';
 import FormikLoginForm from './components/auth/login.js';
+import FormikRegisterForm from './components/auth/register';
 
 
 export const theme = {
@@ -54,7 +55,7 @@ function App() {
     <ThemeProvider theme = {theme}>
     <Router>
     <Route path="/login" component={FormikLoginForm}/>
-
+    <Route path="/register" component={FormikRegisterForm} />
     </Router>
     </ThemeProvider>
   );
