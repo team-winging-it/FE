@@ -22,8 +22,8 @@ const GamePage = props => {
   }
 // const gridString = grid.map( row => row.map(cell => cell.type).join(''))
   return (
-    <div>
-      {grid.map( row => <div style = {{ height: 'auto'}}>{row.map( cell =>
+    <>
+      {grid.map( row => <div style = {{ height: 22}}>{row.map( cell =>
       {
         let color = '';
 
@@ -46,7 +46,7 @@ const GamePage = props => {
     h:{height}
 
 
-    </div>
+    </>
   );
 };
 
