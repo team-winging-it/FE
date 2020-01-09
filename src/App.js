@@ -8,6 +8,7 @@ import {
 import { ThemeProvider } from "pcln-design-system";
 import FormikLoginForm from "./components/auth/login.js";
 import LandingPage from "./components/landing-page/LandingPage";
+import FormikResgistrationForm from "./components/auth/register";
 
 export const theme = {
   primary: {
@@ -59,6 +60,8 @@ function App() {
       <Router>
         <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={FormikLoginForm} />
+        <Route path="/registration" component={FormikResgistrationForm}/>
+
       </Router>
     </ThemeProvider>
   );

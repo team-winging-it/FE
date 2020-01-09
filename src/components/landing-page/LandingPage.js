@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Card, Nav, SubmitWrapper } from "./LandingPageStyle";
 import { Button } from "pcln-design-system";
+import GamePage from "../game-page/game-page";
 
 const LandingPage = props => {
   return (
@@ -12,7 +13,7 @@ const LandingPage = props => {
           </Button>
         </SubmitWrapper>
       </Nav>
-      <Card className="card-style">TEST</Card>
+      <Card className="card-style"> <GamePage/></Card>
     </Container>
   );
 };
