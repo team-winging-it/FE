@@ -4,7 +4,7 @@ require("dotenv").config();
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
   // retrieve API base url from .env
-  const apiUrl = "https://lambda-mud-test.herokuapp.com/"|| "http://localhost:8000";
+  const apiUrl = "http://localhost:9000";
   console.log(apiUrl);
   return axios.create({
     // sets base url, and authorization headers with each axios request

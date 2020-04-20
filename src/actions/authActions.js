@@ -38,7 +38,7 @@ export const loginUser = (data, history) => {
         localStorage.setItem('token', res.data.token);
         //Mixpanel.track('Login Success');
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-        history.push('/dashboard');
+        history.push('/display');
       })
       .catch(err => {
         console.log('error:', err);
