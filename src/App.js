@@ -53,7 +53,7 @@ function App() {
   return (
     <ThemeProvider theme = {theme}>
     <Router>
-    <Route path="/login" component={FormikLoginForm}/>
+    <Route path="/" component={FormikLoginForm}/>
 
     </Router>
     </ThemeProvider>

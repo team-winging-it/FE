@@ -13,20 +13,35 @@ const {
 } = types;
 
 export const loginUser = (data, history) => {
-  console.log("data:", data)
+  console.log('data:', data);
+  const bodyData = new FormData();
+  bodyData.set('username', data.username);
+  bodyData.set('password', data.password);
+  bodyData.set('grant_type', 'password');
+
+  // const headers = new Headers();
+  // headers.set('content-Type', 'application/x-www-form-urlencoded');
+  // headers.set('Authorization', 'Basic ${btoa("doge:doge"))}');
+
   return dispatch => {
     dispatch({ type: LOGIN_START });
-    return axiosWithAuth()
-      .post('api/login/', data)
+    return axios({
+      method: 'POST',
+      url: 'http://localhost:9000/login',
+      data: bodyData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `Basic ${btoa("doge:doge")}`
+      }
+    })
       .then(res => {
-
         localStorage.setItem('token', res.data.token);
         //Mixpanel.track('Login Success');
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         history.push('/dashboard');
       })
       .catch(err => {
-        console.log("error:", err)
+        console.log('error:', err);
         //Mixpanel.track('Login Error');
         dispatch({
           type: LOGIN_FAILURE,
