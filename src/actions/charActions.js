@@ -30,6 +30,30 @@ export const generateMap = () => {
       .then(res => {
         // Mixpanel.track('Register Success');
         console.log('RES DATA', res);
+        dispatch({ type: MAP_GEN_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        // Mixpanel.track('Login Failed');
+        dispatch({ type: MAP_GEN_FAILURE, payload: err });
+      });
+  };
+};
+export const getMap = () => {
+  console.log('BUTTON was pressed');
+  const token = localStorage.getItem('token');
+
+  return dispatch => {
+    dispatch({ type: MAP_GET_START });
+    return axios({
+      method: 'GET',
+      url: 'http://localhost:9000/users/getmap',
+      headers: {
+        Authorization: token
+      }
+    })
+      .then(res => {
+        // Mixpanel.track('Register Success');
+        console.log('RES DATA', res);
         dispatch({ type: MAP_GET_SUCCESS, payload: res.data });
       })
       .catch(err => {

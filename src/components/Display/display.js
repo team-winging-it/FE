@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateMap } from '../../actions/charActions';
+import { generateMap, getMap } from '../../actions/charActions';
 import axios from 'axios';
 
 const Display = props => {
@@ -33,7 +33,10 @@ const Display = props => {
   // );
 
   return(
+    <>
     <button onClick ={ ()=> props.generateMap()}>Generate</button>
+    <button onClick ={ ()=> props.getMap()}>GetMap</button>
+    </>
   );
 };
 const mapStateToProps = state => {
@@ -44,5 +47,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { generateMap }
+  { generateMap, getMap }
 )(Display);
