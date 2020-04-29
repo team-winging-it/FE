@@ -1,9 +1,10 @@
 import { types } from '../actions/index';
-const { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, ERROR_CLEAN } = types;
+const { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, ERROR_CLEAN, USER_LOGIN_SUCCES, INFO_START, INFO_SUCCESS, INFO_FAILURE} = types;
 
 const initialState = {
   token: '',
-  user: [],
+  user: '',
+  userid:'',
   isAuth: !!localStorage.getItem('token'),
   isLoading: false,
   isSuccess: false,
@@ -24,10 +25,15 @@ const authReducer = (state = initialState, { type, payload }) => {
         error: '',
         isAuth: true,
         isLoading: false,
-
         token: payload.token,
         isSuccess: true
       };
+
+    case USER_LOGIN_SUCCES:
+      return {
+        ...state,
+        user:payload,
+      }
     case LOGIN_FAILURE:
       return {
         ...state,
@@ -39,6 +45,7 @@ const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         error: ''
       };
+
 
     default:
       return state;

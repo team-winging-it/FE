@@ -16,6 +16,12 @@ export const types = {
   MAP_GET_SUCCESS:'MAP_GET_SUCCESS',
   MAP_GET_START:'MAP_GET_START',
   MAP_GET_FAILURE:'MAP_GET_FAILURE',
+  //Getting the UserName //
+  USER_LOGIN_SUCCES: 'USER_LOGIN_SUCCESS',
+  //Storing user information//
+  INFO_START:'INFO_START',
+  INFO_SUCCESS:'INFO_SUCCESS',
+  INFO_FAILURE:'INFO_FAILURE',
 };
 
 export const ERROR = 'error';

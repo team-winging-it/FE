@@ -9,7 +9,12 @@ const {
   REGISTER_USER_START,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE,
-  ERROR_CLEAN
+  ERROR_CLEAN,
+  USER_LOGIN_SUCCES,
+  INFO_START,
+  INFO_SUCCESS,
+  INFO_FAILURE,
+
 } = types;
 
 export const loginUser = (data, history) => {
@@ -31,12 +36,14 @@ export const loginUser = (data, history) => {
       data: bodyData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${btoa("doge:doge")}`
+        Authorization: `Basic ${btoa('doge:doge')}`
       }
     })
       .then(res => {
+        console.log('res data', res);
         localStorage.setItem('token', res.data.token);
         //Mixpanel.track('Login Success');
+        dispatch({ type: USER_LOGIN_SUCCES, payload: data.username });
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
         history.push('/display');
       })
@@ -62,6 +69,20 @@ export const registerUser = data => dispatch => {
     .catch(err => {
       // Mixpanel.track('Login Failed');
       dispatch({ type: REGISTER_USER_FAILURE, payload: err });
+    });
+};
+
+export const getUserInfo = username => dispatch => {
+  console.log("getUserInfo", username)
+  dispatch({ type: INFO_START });
+  return axiosWithAuth()
+    .get(`/users/display/${username}`)
+    .then(res => {
+      dispatch({ type: INFO_SUCCESS, payload: res.data });
+    console.log("getUserInfo Success", res)
+    })
+    .catch(err => {
+      dispatch({ type: INFO_FAILURE, payload: err });
     });
 };
 
