@@ -14,7 +14,7 @@ const {
   MAP_GET_SUCCESS
 } = types;
 
-export const generateMap = () => {
+export const generateMap = (userid) => {
   console.log('BUTTON was pressed');
   const token = localStorage.getItem('token');
 
@@ -22,7 +22,7 @@ export const generateMap = () => {
     dispatch({ type: MAP_GEN_START });
     return axios({
       method: 'GET',
-      url: 'http://localhost:9000/users/test',
+      url: `http://localhost:9000/users/test/${userid}`,
       headers: {
         Authorization: token
       }
@@ -38,7 +38,7 @@ export const generateMap = () => {
       });
   };
 };
-export const getMap = () => {
+export const getMap = (userid) => {
   console.log('BUTTON was pressed');
   const token = localStorage.getItem('token');
 
@@ -46,7 +46,7 @@ export const getMap = () => {
     dispatch({ type: MAP_GET_START });
     return axios({
       method: 'GET',
-      url: 'http://localhost:9000/users/getmap',
+      url: `http://localhost:9000/users/getmap/${userid}`,
       headers: {
         Authorization: token
       }

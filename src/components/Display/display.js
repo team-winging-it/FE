@@ -40,8 +40,8 @@ const Display = (props) => {
 
   return (
     <>
-      <button onClick={() => props.generateMap()}>Generate</button>
-      <button onClick={() => props.getMap()}>GetMap</button>
+      <button onClick={() => props.generateMap(props.userid)}>Generate</button>
+      <button onClick={() => props.getMap(props.userid)}>GetMap</button>
     </>
   );
 };
@@ -49,6 +49,7 @@ const mapStateToProps = state => {
   return {
     maps: state.charReducer.playerMap,
     username: state.authReducer.user,
+    userid: state.authReducer.userid,
   };
 };
 
