@@ -10,7 +10,7 @@
     "cra-template": "1.0.0",
     "dotenv": "^8.2.0",
     "formik": "^2.1.1",
-    "pcln-design-system": "^2.8.0",
+    "pcln-design-system": "^3.3.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",

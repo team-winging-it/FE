@@ -12,7 +12,7 @@ const {
 const charState = {
   playerX: 0,
   playerY: 0,
-  playerMap: null,
+  playerMap: [{}],
   error: '',
   isLoading: false,
   isSuccess: false
