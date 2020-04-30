@@ -14,7 +14,7 @@ const {
   MAP_GET_SUCCESS
 } = types;
 
-export const generateMap = (userid) => {
+export const generateMap = userid => {
   console.log('BUTTON was pressed');
   const token = localStorage.getItem('token');
 
@@ -38,7 +38,7 @@ export const generateMap = (userid) => {
       });
   };
 };
-export const getMap = (userid) => {
+export const getMap = userid => {
   console.log('BUTTON was pressed');
   const token = localStorage.getItem('token');
 
@@ -53,7 +53,10 @@ export const getMap = (userid) => {
     })
       .then(res => {
         // Mixpanel.track('Register Success');
-        console.log('RES DATA', res);
+        console.log('RES DATA', res.data[0].grid);
+        res.data.map(n => (n.grid = JSON.parse(n.grid)));
+        console.log('grid', res.data);
+
         dispatch({ type: MAP_GET_SUCCESS, payload: res.data });
       })
       .catch(err => {

@@ -5,7 +5,7 @@ import {getUserInfo} from '../../actions/authActions'
 import axios from 'axios';
 
 const Display = (props) => {
-  console.log(props);
+  console.log("props", props);
   const token = localStorage.getItem('token');
   console.log(props.playerMap)
   useEffect(() => {
