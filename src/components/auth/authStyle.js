@@ -4,7 +4,7 @@ export const Container = styled.div`
   justify-items: center;
   display: flex;
   justify-content: center;
-  background: #282e74;
+  background: #0a0;
   .map {
     width: 60%;
     @media (max-width: 1024px) {
