@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { generateMap, getMap} from '../../actions/charActions';
 import {getUserInfo} from '../../actions/authActions'
 import axios from 'axios';
+import { Button } from 'pcln-design-system';
+import {Container} from'./displayStyle';
 
 const Display = (props) => {
   console.log("props", props);
@@ -14,12 +16,14 @@ const Display = (props) => {
 
   }, [])
   return (
-    <>
-      <button onClick={() => props.generateMap(props.userid)}>Generate</button>
-    <button onClick={() => props.getMap(props.userid)}>GetMap</button>
+    <Container className = "container">
+    <h>Load youtr map</h>
+    <div classname = "buttonContainer">
+      <Button size='medium'onClick={() => props.generateMap(props.userid)}>Generate</Button>
+    <Button size='medium' onClick={() => props.getMap(props.userid)}>GetMap</Button>
      { props.maps.map(n => (<div>{n.mapid}</div>))}
-
-    </>
+    </div>
+    </Container>
   );
 };
 const mapStateToProps = state => {
