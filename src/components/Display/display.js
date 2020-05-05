@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { generateMap, getMap} from '../../actions/charActions';
 import {getUserInfo} from '../../actions/authActions'
@@ -8,6 +8,9 @@ import {Container} from'./displayStyle';
 
 const Display = (props) => {
   console.log("props", props);
+  const[ render, setRender] = useState(false)
+  const[ mapID, setMapId] = useState();
+
   const token = localStorage.getItem('token');
   console.log(props.playerMap)
   useEffect(() => {
@@ -15,14 +18,20 @@ const Display = (props) => {
     props.getMap(props.userid)
 
   }, [])
+  console.log("map State",render)
   return (
     <Container className = "container">
-    <h>Load youtr map</h>
+    <h>Load your map</h>
     <div classname = "buttonContainer">
       <Button size='medium'onClick={() => props.generateMap(props.userid)}>Generate</Button>
     <Button size='medium' onClick={() => props.getMap(props.userid)}>GetMap</Button>
-     { props.maps.map(n => (<div>{n.mapid}</div>))}
     </div>
+      <div className="mapContainer">
+     { props.maps.map(n => (
+         <Button className = "mapButton" variation="outline" color= "black" onClick = { function loadMap(){ setRender(true); setMapId(n.mapid);} }>
+           {n.mapid}
+         </Button>))}
+      </div>
     </Container>
   );
 };
