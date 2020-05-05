@@ -21,6 +21,7 @@ const Display = (props) => {
   console.log("map State",render)
   return (
     <Container className = "container">
+      {!render === true ? (<>
     <h>Load your map</h>
     <div classname = "buttonContainer">
       <Button size='medium'onClick={() => props.generateMap(props.userid)}>Generate</Button>
@@ -32,6 +33,10 @@ const Display = (props) => {
            {n.mapid}
          </Button>))}
       </div>
+       </> ):
+          (
+            <div>test</div>
+        )}
     </Container>
   );
 };
