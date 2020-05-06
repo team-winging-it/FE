@@ -10,22 +10,24 @@ const Display = (props) => {
   console.log("props", props);
   const[ render, setRender] = useState(false)
   const[ mapID, setMapId] = useState();
+  const[ refresh, setRefresh] = useState(false);
 
   const token = localStorage.getItem('token');
-  console.log(props.playerMap)
+
   useEffect(() => {
     props.getUserInfo(props.username)
     props.getMap(props.userid)
+    setRefresh(false)
+    console.log(refresh, "refresh")
+  }, [refresh])
 
-  }, [])
-  console.log("map State",render)
   return (
     <Container className = "container">
       {!render === true ? (<>
     <h>Load your map</h>
     <div classname = "buttonContainer">
-      <Button size='medium'onClick={() => props.generateMap(props.userid)}>Generate</Button>
-    <Button size='medium' onClick={() => props.getMap(props.userid)}>GetMap</Button>
+      <Button size='medium'onClick={function generateRefresh() { props.generateMap(props.userid); setRefresh(true);}}>Generate</Button>
+    <Button size='medium' onClick={() => props.getMap(props.userid) }>GetMap</Button>
     </div>
       <div className="mapContainer">
      { props.maps.map(n => (

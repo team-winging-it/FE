@@ -46,14 +46,14 @@ const charReducer = (state = charState, { type, payload }) => {
         error: '',
         isLoading: true
       };
-    case MAP_GEN_SUCCESS:
-      return {
-        ...state,
-        error: '',
-        isLoading: false,
-        playerMap: payload.grid,
-        isSuccess: true
-      };
+    // case MAP_GEN_SUCCESS:
+    //   return {
+    //     ...state,
+    //     error: '',
+    //     isLoading: false,
+    //     playerMap: payload,
+    //     isSuccess: true
+    //   };
     case MAP_GEN_FAILURE:
       return {
         ...state,
