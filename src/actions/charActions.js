@@ -15,7 +15,7 @@ const {
 } = types;
 
 export const generateMap = userid => {
-  console.log('BUTTON was pressed');
+
   const token = localStorage.getItem('token');
 
   return dispatch => {
@@ -29,8 +29,8 @@ export const generateMap = userid => {
     })
       .then(res => {
         // Mixpanel.track('Register Success');
-        console.log('RES DATA', res);
-        dispatch({ type: MAP_GEN_SUCCESS, payload: res.data });
+
+        dispatch({ type: MAP_GEN_SUCCESS, payload: res });
       })
       .catch(err => {
         // Mixpanel.track('Login Failed');
@@ -39,7 +39,7 @@ export const generateMap = userid => {
   };
 };
 export const getMap = userid => {
-  console.log('BUTTON was pressed');
+
   const token = localStorage.getItem('token');
 
   return dispatch => {
@@ -53,9 +53,9 @@ export const getMap = userid => {
     })
       .then(res => {
         // Mixpanel.track('Register Success');
-        console.log('RES DATA', res.data[0].grid);
+
         res.data.map(n => (n.grid = JSON.parse(n.grid)));
-        console.log('grid', res.data);
+
 
         dispatch({ type: MAP_GET_SUCCESS, payload: res.data });
       })

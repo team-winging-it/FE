@@ -18,7 +18,6 @@ const {
 } = types;
 
 export const loginUser = (data, history) => {
-  console.log('data:', data);
   const bodyData = new FormData();
   bodyData.set('username', data.username);
   bodyData.set('password', data.password);
@@ -40,7 +39,7 @@ export const loginUser = (data, history) => {
       }
     })
       .then(res => {
-        console.log('res data', res);
+
         localStorage.setItem('token', res.data.token);
         //Mixpanel.track('Login Success');
         dispatch({ type: USER_LOGIN_SUCCES, payload: data.username });
@@ -48,7 +47,7 @@ export const loginUser = (data, history) => {
         history.push('/display');
       })
       .catch(err => {
-        console.log('error:', err);
+
         //Mixpanel.track('Login Error');
         dispatch({
           type: LOGIN_FAILURE,
@@ -73,13 +72,13 @@ export const registerUser = data => dispatch => {
 };
 
 export const getUserInfo = username => dispatch => {
-  console.log("getUserInfo", username)
+
   dispatch({ type: INFO_START });
   return axiosWithAuth()
     .get(`/users/display/${username}`)
     .then(res => {
       dispatch({ type: INFO_SUCCESS, payload: res.data });
-    console.log("getUserInfo Success", res)
+
     })
     .catch(err => {
       dispatch({ type: INFO_FAILURE, payload: err });
