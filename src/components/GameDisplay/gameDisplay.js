@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { setMapId} from "../../actions/charActions";
+import { setMapId, movePlayer, getPlayerLocation} from "../../actions/charActions";
 
 
 const GameDisplay = (props) =>
 {
   const [grid, setGrid] = useState([])
   const [gridId, setGridId] = useState()
+  const [player, setPlayer] = useState({
+    playerx: 33,
+    playery:33,
+  })
   console.log("display", props)
 
   function selectMap() {
@@ -22,7 +26,7 @@ const GameDisplay = (props) =>
 
   useEffect(() => {
     selectMap()
-    
+
   }, [])
 
 
@@ -31,7 +35,9 @@ const GameDisplay = (props) =>
   return(
       <>
       <div>{props.mapid}</div>
-        {/*<button onClick={ () => {selectMap()}}>clickme</button>*/}
+        <button onClick={ () => {props.getPlayerLocation(props.playerMapId)}}>Geting player location</button>
+        <button onClick={ () => {props.movePlayer(player, props.playerMapId)}}>Testing player movement</button>
+
         </>
 
   )
@@ -50,4 +56,4 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect( mapStateToProps, {setMapId}, )(GameDisplay);
+export default connect( mapStateToProps, {setMapId, movePlayer, getPlayerLocation}, )(GameDisplay);

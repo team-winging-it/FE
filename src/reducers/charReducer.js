@@ -9,6 +9,12 @@ const {
   MAP_GEN_FAILURE,
   SET_MAPID_SUCCESS,
   SET_MAPID_START,
+  MOVE_START,
+  MOVE_SUCCESS,
+  MOVE_FAILURE,
+  GET_PLAYER_LOCATION_START,
+  GET_PLAYER_LOCATION_SUCCESS,
+  GET_PLAYER_LOCATION_FAILURE,
 } = types;
 
 const charState = {
@@ -24,6 +30,8 @@ const charState = {
 const charReducer = (state = charState, { type, payload }) => {
   console.log(type)
   switch (type) {
+
+    /// retrieving map from database
     case MAP_GET_START:
       return {
         ...state,
@@ -44,41 +52,82 @@ const charReducer = (state = charState, { type, payload }) => {
         isLoading: false,
         error: payload
       };
+      //----- generation of map
     case MAP_GEN_START:
       return {
         ...state,
         error: '',
         isLoading: true
       };
-    // case MAP_GEN_SUCCESS:
-    //   return {
-    //     ...state,
-    //     error: '',
-    //     isLoading: false,
-    //     playerMap: payload,
-    //     isSuccess: true
-    //   };
+    case MAP_GEN_SUCCESS:
+      return {
+        ...state,
+        error: '',
+        isLoading: false,
+        isSuccess: true
+      };
     case MAP_GEN_FAILURE:
       return {
         ...state,
         isLoading: false,
         error: payload
       };
+      ////------- Saving mapid
     case SET_MAPID_START:
-      console.log("IT STARTED")
       return{
         ...state,
         isLoading: true,
-        error: payload,
+
       };
     case SET_MAPID_SUCCESS:
-      debugger
-      console.log("WHY NO WORK", payload)
       return{
         ...state,
         mapId: payload,
         isLoading: false
       };
+
+    ///---------------player movement
+    case MOVE_START:
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case MOVE_SUCCESS:
+      return{
+        ...state,
+        playerX: payload.playerx,
+        playerY: payload.playery,
+        isLoading: false,
+      }
+    case MOVE_FAILURE:
+      return{
+        ...state,
+        isLoading: false,
+        error: payload
+      }
+
+      ///---- getting the player location from the backend
+
+    case GET_PLAYER_LOCATION_START:
+      return{
+        ...state,
+        isLoading: true,
+      }
+
+    case GET_PLAYER_LOCATION_SUCCESS:
+      return{
+        ...state,
+        playerX: payload.playerx,
+        playerY: payload.playery,
+        isloading:false
+      }
+
+    case GET_PLAYER_LOCATION_FAILURE:
+      return{
+        ...state,
+        isLoading: false,
+        error: payload
+      }
 
     default:
       return state;
