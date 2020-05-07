@@ -22,6 +22,10 @@ export const types = {
   INFO_START:'INFO_START',
   INFO_SUCCESS:'INFO_SUCCESS',
   INFO_FAILURE:'INFO_FAILURE',
+  // Changing the state through the front end
+  SET_MAPID_START:'SET_MAPID_START',
+  SET_MAPID_SUCCESS:'SET_MAPID_SUCCESS'
 };
+
 
 export const ERROR = 'error';
