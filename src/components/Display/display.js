@@ -5,11 +5,12 @@ import {getUserInfo} from '../../actions/authActions'
 import axios from 'axios';
 import { Button } from 'pcln-design-system';
 import {Container} from'./displayStyle';
+import GameDisplay from '../GameDisplay/gameDisplay';
 
 const Display = (props) => {
   console.log("props", props);
   const[ render, setRender] = useState(false)
-  const[ mapID, setMapId] = useState();
+  const[ mapId, setMapId] = useState();
   const[ refresh, setRefresh] = useState(false);
 
   const token = localStorage.getItem('token');
@@ -37,7 +38,7 @@ const Display = (props) => {
       </div>
        </> ):
           (
-            <div>test</div>
+            <GameDisplay mapid = {mapId} />
         )}
     </Container>
   );

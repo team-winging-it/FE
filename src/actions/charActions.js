@@ -11,11 +11,12 @@ const {
   MAP_GEN_FAILURE,
   MAP_GET_START,
   MAP_GET_FAILURE,
-  MAP_GET_SUCCESS
+  MAP_GET_SUCCESS,
+  SET_MAPID_START,
+  SET_MAPID_SUCCESS,
 } = types;
 
 export const generateMap = userid => {
-
   const token = localStorage.getItem('token');
 
   return dispatch => {
@@ -53,7 +54,7 @@ export const getMap = userid => {
     })
       .then(res => {
         // Mixpanel.track('Register Success');
-
+        console.log(res)
         res.data.map(n => (n.grid = JSON.parse(n.grid)));
 
 
@@ -63,5 +64,14 @@ export const getMap = userid => {
         // Mixpanel.track('Login Failed');
         dispatch({ type: MAP_GET_FAILURE, payload: err });
       });
+  };
+};
+
+export const setMapId = mapId => {
+
+  return dispatch => {
+    dispatch({ type: SET_MAPID_START,});
+    return dispatch({type: SET_MAPID_SUCCESS, payload: mapId});
+
   };
 };
