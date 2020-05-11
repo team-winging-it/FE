@@ -14,6 +14,10 @@ const {
   MAP_GET_SUCCESS,
   SET_MAPID_START,
   SET_MAPID_SUCCESS,
+  GET_PLAYER_LOCATION_START,
+  GET_PLAYER_LOCATION_SUCCESS,
+  GET_PLAYER_LOCATION_FAILURE,
+
 } = types;
 
 export const generateMap = userid => {
@@ -66,6 +70,54 @@ export const getMap = userid => {
       });
   };
 };
+
+
+export const getPlayerLocation = mapid => {
+
+  const token = localStorage.getItem('token');
+
+  return dispatch => {
+    dispatch({ type: GET_PLAYER_LOCATION_START });
+    return axios({
+      method: 'GET',
+      url: `http://localhost:9000/users/playerlocation/${mapid}`,
+      headers: {
+        Authorization: token
+      }
+    })
+        .then(res => {
+
+          dispatch({ type: GET_PLAYER_LOCATION_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+
+          dispatch({ type: GET_PLAYER_LOCATION_FAILURE, payload: err });
+        });
+  };
+};
+
+export const movePlayer = (player, mapid) => {
+
+
+  const token = localStorage.getItem('token');
+  return dispatch => {
+    dispatch({type: MOVE_START});
+
+    return axios({
+      method: 'PUT',
+      url: `http://localhost:9000/users/moveplayer/${mapid}`,
+      data: player,
+      headers: {
+        Authorization: token
+      }
+    })
+        .then(res => {
+          dispatch({ type: MOVE_SUCCESS, payload: player})
+        })
+        .catch(err => ({type: MOVE_FAILURE, payload: err}))
+  }
+}
+
 
 export const setMapId = mapId => {
 
