@@ -86,7 +86,7 @@ export const getPlayerLocation = mapid => {
       }
     })
         .then(res => {
-
+          console.log("getPlayerLocation", res)
           dispatch({ type: GET_PLAYER_LOCATION_SUCCESS, payload: res.data });
         })
         .catch(err => {
@@ -98,7 +98,7 @@ export const getPlayerLocation = mapid => {
 
 export const movePlayer = (player, mapid) => {
 
-
+  console.log("player json", player)
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch({type: MOVE_START});
@@ -106,12 +106,13 @@ export const movePlayer = (player, mapid) => {
     return axios({
       method: 'PUT',
       url: `http://localhost:9000/users/moveplayer/${mapid}`,
-      data: player,
+      data: player.player,
       headers: {
         Authorization: token
       }
     })
         .then(res => {
+
           dispatch({ type: MOVE_SUCCESS, payload: player})
         })
         .catch(err => ({type: MOVE_FAILURE, payload: err}))
