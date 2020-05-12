@@ -93,11 +93,11 @@ const charReducer = (state = charState, { type, payload }) => {
         isLoading: true,
       }
     case MOVE_SUCCESS:
-      console.log("move success", payload.player.playerx)
+      console.log("move success", payload.player)
       return{
         ...state,
-        playerX: payload.player.playerx,
-        playerY: payload.player.playery,
+        // playerX: payload.player.playerx,
+        // playerY: payload.player.playery,
         isLoading: false,
       }
     case MOVE_FAILURE:
@@ -116,7 +116,7 @@ const charReducer = (state = charState, { type, payload }) => {
       }
 
     case GET_PLAYER_LOCATION_SUCCESS:
-      // console.log("setting player location", payload)
+      console.log("setting player location", payload)
       return{
         ...state,
         playerX: payload.playerx,

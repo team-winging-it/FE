@@ -14,7 +14,7 @@ const GameDisplay = (props) =>
   })
   const[gridWidth, setGridWidth] = useState();
   const[gridHeight, setGridHeight] = useState();
-
+  const[ refresh, setRefresh] = useState(false);
 
 
   function selectMap() {
@@ -27,6 +27,8 @@ const GameDisplay = (props) =>
           setGridWidth(props.maps[i].width)
           setGridHeight(props.maps[i].height)
           props.getPlayerLocation(props.playerMapId);
+
+
           setPlayer({
             x: props.playerX,
             y: props.playerY
@@ -41,7 +43,10 @@ const GameDisplay = (props) =>
   useEffect(() => {
     selectMap()
 
-  }, [])
+    setRefresh(false)
+
+
+  }, [refresh])
 
   // const displayGrid = []
   //
@@ -94,7 +99,7 @@ const GameDisplay = (props) =>
 
         ):(<div>Loading</div>)}
         <div>
-          <Keypad />
+          <Keypad setRefresh = {setRefresh} refresh = {refresh} />
         </div>
         </>
 

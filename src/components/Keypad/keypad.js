@@ -11,13 +11,13 @@ import {movePlayer, getPlayerLocation} from "../../actions/charActions"
 
 const Keypad = props => {
 
-    const [ player, setPlayer] = useState({
+    const [ playerK, setPlayerK] = useState({
         playerx: props.x,
         playery: props.y,
     })
 
 
-    const [ refresh, setRefresh] = useState(false)
+
 
     // useEffect(() => {
     //     props.getPlayerLocation(props.playerMapId)
@@ -27,31 +27,35 @@ const Keypad = props => {
 function moverDirection(direction) {
 
   if( direction === "N"){
-      setPlayer({playery:props.y-1, playerx:props.x})
+
+      setPlayerK({playery:props.y-1, playerx:props.x})
+      console.log("N", playerK)
   }
   if(direction === "S"){
-      setPlayer({playery:props.y+1,playerx:props.x})
+      setPlayerK({playery:props.y+1,playerx:props.x})
 
   }
    if(direction ==="W"){
-       setPlayer({playerx:props.x-1, playery:props.y})
+       setPlayerK({playerx:props.x-1, playery:props.y})
 
    }
     if(direction ==="E"){
-        setPlayer({playerx:props.x+1, playery:props.y})
+        setPlayerK({playerx:props.x+1, playery:props.y})
 
     }
+    console.log("player that is sent off to the server", playerK)
+
+    props.movePlayer({player: playerK},props.playerMapId)
+    props.setRefresh(true);
 
 
-    props.movePlayer({player},props.playerMapId)
-    setRefresh(true);
 
 }
 
 
 
 
-console.log("keyPad", props)
+
 
 
 
