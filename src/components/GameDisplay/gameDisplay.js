@@ -6,11 +6,11 @@ import Keypad from "../Keypad/keypad";
 
 const GameDisplay = (props) =>
 {
-  const [grid, setGrid] = useState([])
+  const [grid, setGrid] = useState([[]])
   const [gridId, setGridId] = useState()
   const [player, setPlayer] = useState({
-    x: 31,
-    y:31,
+    x: 0,
+    y:0,
   })
   const[gridWidth, setGridWidth] = useState();
   const[gridHeight, setGridHeight] = useState();
@@ -18,15 +18,22 @@ const GameDisplay = (props) =>
 
 
   function selectMap() {
-    for (let i = 0; i < props.maps.length; i++) {
-      if (props.maps[i].mapid === props.mapid) {
-        props.setMapId(props.mapid)
-        setGrid(props.maps[i])
-        console.log("use grid", grid);
-        setGridWidth(props.maps[i].width)
-        setGridHeight(props.maps[i].height)
+
+    if(props.maps.length !== null) {
+      for (let i = 0; i < props.maps.length; i++) {
+        if (props.maps[i].mapid === props.mapid) {
+          props.setMapId(props.mapid)
+          setGrid(props.maps[i])
+          setGridWidth(props.maps[i].width)
+          setGridHeight(props.maps[i].height)
+          props.getPlayerLocation(props.playerMapId);
+          setPlayer({
+            x: props.playerX,
+            y: props.playerY
+          })
 
 
+        }
       }
     }
   }
@@ -36,28 +43,26 @@ const GameDisplay = (props) =>
 
   }, [])
 
-  const displayGrid = []
+  // const displayGrid = []
+  //
+  //
+  // for (let i = 0; i <= gridHeight; i++){
+  //   const row = [];
+  //   for (let j = 0; j < grid.grid.length; j++) {
+  //     if (grid.grid[j].y === i) {
+  //       row.push(grid.grid[j])
+  //     }
+  //   }
+  //   displayGrid.push(row);
+  // }
 
-
-  for (let i = 0; i <= gridHeight; i++){
-    const row = [];
-    for (let j = 0; j < grid.grid.length; j++) {
-      if (grid.grid[j].y === i) {
-        row.push(grid.grid[j])
-      }
-    }
-    displayGrid.push(row);
-  }
-console.log("DisplayGird", displayGrid);
-console.log("grid", grid)
-  console.log("props isloading", props.isLoading)
   return(
       <>
       {/*<div>{props.mapid}</div>*/}
       {/*  <button onClick={ () => {props.getPlayerLocation(props.playerMapId)}}>Geting player location</button>*/}
       {/*  <button onClick={ () => {props.movePlayer(player, props.playerMapId)}}>Testing player movement</button>*/}
 
-        { grid.grid !== undefined ? (grid.grid.map(row => (
+        { grid.grid !== undefined && grid.grid !== null ? (grid.grid.map(row => (
             <div style={{ height: 22 }}>
               {row.map(cell => {
                 let color = '';

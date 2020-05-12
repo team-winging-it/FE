@@ -28,7 +28,7 @@ const charState = {
 };
 
 const charReducer = (state = charState, { type, payload }) => {
-  console.log(type)
+
   switch (type) {
 
     /// retrieving map from database
@@ -93,10 +93,11 @@ const charReducer = (state = charState, { type, payload }) => {
         isLoading: true,
       }
     case MOVE_SUCCESS:
+      console.log("move success", payload.player.playerx)
       return{
         ...state,
-        playerX: payload.playerx,
-        playerY: payload.playery,
+        playerX: payload.player.playerx,
+        playerY: payload.player.playery,
         isLoading: false,
       }
     case MOVE_FAILURE:
@@ -115,6 +116,7 @@ const charReducer = (state = charState, { type, payload }) => {
       }
 
     case GET_PLAYER_LOCATION_SUCCESS:
+      // console.log("setting player location", payload)
       return{
         ...state,
         playerX: payload.playerx,
