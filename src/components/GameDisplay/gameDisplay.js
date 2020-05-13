@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { setMapId, movePlayer, getPlayerLocation} from "../../actions/charActions";
+import { setMapId, movePlayer, getPlayerLocation, setRefresh} from "../../actions/charActions";
 import Keypad from "../Keypad/keypad";
 
 
@@ -9,12 +9,12 @@ const GameDisplay = (props) =>
   const [grid, setGrid] = useState([[]])
   const [gridId, setGridId] = useState()
   const [player, setPlayer] = useState({
-    x: 0,
-    y:0,
+    x: props.playerX,
+    y: props.playerY,
   })
   const[gridWidth, setGridWidth] = useState();
   const[gridHeight, setGridHeight] = useState();
-
+  // const[ refresh, setRefresh] = useState(false);
 
 
   function selectMap() {
@@ -27,6 +27,8 @@ const GameDisplay = (props) =>
           setGridWidth(props.maps[i].width)
           setGridHeight(props.maps[i].height)
           props.getPlayerLocation(props.playerMapId);
+
+
           setPlayer({
             x: props.playerX,
             y: props.playerY
@@ -40,8 +42,11 @@ const GameDisplay = (props) =>
 
   useEffect(() => {
     selectMap()
+    props.setRefresh(false)
 
-  }, [])
+
+
+  }, [props.refresh])
 
   // const displayGrid = []
   //
@@ -94,7 +99,7 @@ const GameDisplay = (props) =>
 
         ):(<div>Loading</div>)}
         <div>
-          <Keypad />
+          <Keypad   setPlayer={setPlayer} player = {player}/>
         </div>
         </>
 
@@ -111,8 +116,9 @@ const mapStateToProps = state => {
     playerX: state.charReducer.playerX,
     playerY: state.charReducer.playerY,
     playerMapId: state.charReducer.mapId,
-    isLoading: state.charReducer.isLoading
+    isLoading: state.charReducer.isLoading,
+    refresh: state.charReducer.refresh,
   };
 }
 
-export default connect( mapStateToProps, {setMapId, movePlayer, getPlayerLocation}, )(GameDisplay);
+export default connect( mapStateToProps, {setMapId, movePlayer, getPlayerLocation, setRefresh}, )(GameDisplay);
