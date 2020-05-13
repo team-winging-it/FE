@@ -1,6 +1,6 @@
 import React ,{useEffect, useState}from "react";
 import {connect} from "react-redux";
-import {movePlayer, getPlayerLocation} from "../../actions/charActions"
+import {movePlayer, getPlayerLocation, setRefresh} from "../../actions/charActions"
 // import {Promise} from "bluebird";
 
 
@@ -13,7 +13,7 @@ import {movePlayer, getPlayerLocation} from "../../actions/charActions"
 
 const Keypad = props => {
 
-    const {setPlayer, player} = props;
+    const {setPlayer, player, setRefresh} = props;
 
     // const [ playerK, setPlayerK] = useState({
     //     playerx: props.x,
@@ -33,7 +33,7 @@ function moveDirection(direction) {
 
   if( direction === "N"){
 
-
+      // setPlayer({y:props.y-1, x:props.x})
           // let nMove = new Promise((resolve, reject) => {
           //     setPlayer({y:props.y-1, x:props.x})
           //     // console.log(player)
@@ -56,20 +56,30 @@ function moveDirection(direction) {
       // const promise3 = Promise.resolve(props.setRefresh(true))
 
 
+        function movementTest() {
+          let moveN = ({playery:props.y-1, playerx:props.x})
+            // while( setPlayer({y:props.y-1, x:props.x}) !== moveN){
+            //
+            //
+            // }
 
-
-        function moveNorth(){
-            Promise.resolve(setPlayer({y:props.y-1, x:props.x}))
-
-
+            props.movePlayer(moveN,props.playerMapId)
+            return moveN
         }
-        const myPromise =
-            (new Promise(moveNorth))
-            .then((res) => {
-                console.log("reee", res)
-                props.movePlayer({res},props.playerMapId)
-            })
-            .then(props.setRefresh(true))
+        movementTest()
+        setRefresh(true)
+        // function moveNorth(){
+        //     Promise.resolve(movementTest)
+        //
+        //
+        // }
+        // const myPromise =
+        //     (new Promise(moveNorth))
+        //     .then((res) => {
+        //         console.log("reee", res)
+        //         props.movePlayer({res},props.playerMapId)
+        //     })
+        //     // .then(props.setRefresh(true))
 
       // const myPromise = (new Promise(setPlayer({y:props.y-1, x:props.x}, reject)))
       //     .then(props.movePlayer({player: player},props.playerMapId))
@@ -121,6 +131,7 @@ const mapStateToProps = state => {
         x: state.charReducer.playerX,
         y: state.charReducer.playerY,
         playerMapId: state.charReducer.mapId,
+        refresh1: state.charReducer.refresh,
     }
 }
-export default connect(mapStateToProps, {movePlayer, getPlayerLocation})(Keypad);
+export default connect(mapStateToProps, {movePlayer, getPlayerLocation, setRefresh})(Keypad);

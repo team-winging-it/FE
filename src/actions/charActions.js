@@ -17,6 +17,8 @@ const {
   GET_PLAYER_LOCATION_START,
   GET_PLAYER_LOCATION_SUCCESS,
   GET_PLAYER_LOCATION_FAILURE,
+    REFRESH_START,
+    REFRESH_SUCCESS,
 
 } = types;
 
@@ -97,7 +99,7 @@ export const getPlayerLocation = mapid => {
 };
 
 export const movePlayer = (player, mapid) => {
-
+  console.log("moving player", player)
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch({type: MOVE_START});
@@ -105,7 +107,7 @@ export const movePlayer = (player, mapid) => {
     return axios({
       method: 'PUT',
       url: `http://localhost:9000/users/moveplayer/${mapid}`,
-      data: player.player,
+      data: player,
       headers: {
         Authorization: token
       }
@@ -124,6 +126,15 @@ export const setMapId = mapId => {
   return dispatch => {
     dispatch({ type: SET_MAPID_START,});
     return dispatch({type: SET_MAPID_SUCCESS, payload: mapId});
+
+  };
+};
+
+export const setRefresh= type => {
+
+  return dispatch => {
+    dispatch({ type: REFRESH_START,});
+    return dispatch({type: REFRESH_SUCCESS, payload: type});
 
   };
 };

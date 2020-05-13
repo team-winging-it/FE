@@ -15,6 +15,8 @@ const {
   GET_PLAYER_LOCATION_START,
   GET_PLAYER_LOCATION_SUCCESS,
   GET_PLAYER_LOCATION_FAILURE,
+    REFRESH_START,
+    REFRESH_SUCCESS
 } = types;
 
 const charState = {
@@ -25,6 +27,7 @@ const charState = {
   isLoading: false,
   isSuccess: false,
   mapId: 0,
+  refresh: false,
 };
 
 const charReducer = (state = charState, { type, payload }) => {
@@ -93,11 +96,12 @@ const charReducer = (state = charState, { type, payload }) => {
         isLoading: true,
       }
     case MOVE_SUCCESS:
-      console.log("move success", payload.player)
+      console.log("move success", payload)
       return{
         ...state,
-        // playerX: payload.player.playerx,
-        // playerY: payload.player.playery,
+        playerX: payload.playerx,
+        playerY: payload.playery,
+        refresh: true,
         isLoading: false,
       }
     case MOVE_FAILURE:
@@ -129,6 +133,18 @@ const charReducer = (state = charState, { type, payload }) => {
         ...state,
         isLoading: false,
         error: payload
+      }
+    case REFRESH_START:
+      return{
+        ...state,
+        isLoading: true,
+
+      }
+    case REFRESH_SUCCESS:
+      return{
+        ...state,
+        refresh: payload,
+
       }
 
     default:
