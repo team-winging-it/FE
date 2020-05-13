@@ -13,7 +13,7 @@ import {movePlayer, getPlayerLocation, setRefresh} from "../../actions/charActio
 
 const Keypad = props => {
 
-    const {setPlayer, player, setRefresh} = props;
+    const {setPlayer, player, setRefresh, grid} = props;
 
     // const [ playerK, setPlayerK] = useState({
     //     playerx: props.x,
@@ -33,71 +33,46 @@ function moveDirection(direction) {
 
   if( direction === "N"){
 
-      // setPlayer({y:props.y-1, x:props.x})
-          // let nMove = new Promise((resolve, reject) => {
-          //     setPlayer({y:props.y-1, x:props.x})
-          //     // console.log(player)
-          //     //   resolve()
-          //     // return resolve
-          //
-          // });
-          // nMove.then((res) => {
-          //     console.log("SDOFSOIFSJFOSDJFSD")
-          //     props.movePlayer({player: player},props.playerMapId)
-          //     // return res
-          //
-          // })
-          //     .then((res) => {
-          //       props.setRefresh(true);
-          //       // res()
-          //   })
-      // const promise1 = Promise.resolve( setPlayer({y:props.y-1, x:props.x}));
-      // const promise2 = Promise.resolve(props.movePlayer({player: player},props.playerMapId))
-      // const promise3 = Promise.resolve(props.setRefresh(true))
 
-
-        function movementTest() {
           let moveN = ({playery:props.y-1, playerx:props.x})
-            // while( setPlayer({y:props.y-1, x:props.x}) !== moveN){
-            //
-            //
-            // }
 
-            props.movePlayer(moveN,props.playerMapId)
-            return moveN
-        }
-        movementTest()
-        setRefresh(true)
-        // function moveNorth(){
-        //     Promise.resolve(movementTest)
-        //
-        //
-        // }
-        // const myPromise =
-        //     (new Promise(moveNorth))
-        //     .then((res) => {
-        //         console.log("reee", res)
-        //         props.movePlayer({res},props.playerMapId)
-        //     })
-        //     // .then(props.setRefresh(true))
+            if(grid.grid[moveN.playery][moveN.playerx].roomType !== "Wall") {
 
-      // const myPromise = (new Promise(setPlayer({y:props.y-1, x:props.x}, reject)))
-      //     .then(props.movePlayer({player: player},props.playerMapId))
-      //     .then(console.log("N", player))
+                props.movePlayer(moveN, props.playerMapId)
 
+                setRefresh(true)
+            }
 
   }
   if(direction === "S"){
-      setPlayer({y:props.y+1,x:props.x})
+      let moveS = ({playery:props.y+1,playerx:props.x})
+      if(grid.grid[moveS.playery][moveS.playerx].roomType !== "Wall") {
+
+          props.movePlayer(moveS, props.playerMapId)
+
+          setRefresh(true)
+      }
+
 
   }
    if(direction ==="W"){
-       setPlayer({x:props.x-1, y:props.y})
+       let moveW = ({playerx:props.x-1, playery:props.y})
+       if(grid.grid[moveW.playery][moveW.playerx].roomType !== "Wall") {
+
+           props.movePlayer(moveW, props.playerMapId)
+
+           setRefresh(true)
+       }
 
    }
     if(direction ==="E"){
-        setPlayer({x:props.x+1, y:props.y})
+        let moveE =({playerx:props.x+1, playery:props.y})
+        if(grid.grid[moveE.playery][moveE.playerx].roomType !== "Wall") {
 
+            props.movePlayer(moveE, props.playerMapId)
+
+            setRefresh(true)
+        }
     }
     // console.log("player that is sent off to the server", player)
     //
