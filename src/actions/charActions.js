@@ -98,7 +98,6 @@ export const getPlayerLocation = mapid => {
 
 export const movePlayer = (player, mapid) => {
 
-
   const token = localStorage.getItem('token');
   return dispatch => {
     dispatch({type: MOVE_START});

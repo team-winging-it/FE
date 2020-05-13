@@ -9,8 +9,8 @@ const GameDisplay = (props) =>
   const [grid, setGrid] = useState([[]])
   const [gridId, setGridId] = useState()
   const [player, setPlayer] = useState({
-    x: 0,
-    y:0,
+    x: props.playerX,
+    y: props.playerY,
   })
   const[gridWidth, setGridWidth] = useState();
   const[gridHeight, setGridHeight] = useState();
@@ -99,7 +99,7 @@ const GameDisplay = (props) =>
 
         ):(<div>Loading</div>)}
         <div>
-          <Keypad setRefresh = {setRefresh} refresh = {refresh} />
+          <Keypad setRefresh = {setRefresh} refresh = {refresh} setPlayer={setPlayer} player = {player}/>
         </div>
         </>
 

@@ -1,6 +1,8 @@
 import React ,{useEffect, useState}from "react";
 import {connect} from "react-redux";
 import {movePlayer, getPlayerLocation} from "../../actions/charActions"
+// import {Promise} from "bluebird";
+
 
 
 
@@ -11,10 +13,12 @@ import {movePlayer, getPlayerLocation} from "../../actions/charActions"
 
 const Keypad = props => {
 
-    const [ playerK, setPlayerK] = useState({
-        playerx: props.x,
-        playery: props.y,
-    })
+    const {setPlayer, player} = props;
+
+    // const [ playerK, setPlayerK] = useState({
+    //     playerx: props.x,
+    //     playery: props.y,
+    // })
 
 
 
@@ -24,29 +28,71 @@ const Keypad = props => {
     //
     // }, [refresh])
 
-function moverDirection(direction) {
+function moveDirection(direction) {
+
 
   if( direction === "N"){
 
-      setPlayerK({playery:props.y-1, playerx:props.x})
-      console.log("N", playerK)
+
+          // let nMove = new Promise((resolve, reject) => {
+          //     setPlayer({y:props.y-1, x:props.x})
+          //     // console.log(player)
+          //     //   resolve()
+          //     // return resolve
+          //
+          // });
+          // nMove.then((res) => {
+          //     console.log("SDOFSOIFSJFOSDJFSD")
+          //     props.movePlayer({player: player},props.playerMapId)
+          //     // return res
+          //
+          // })
+          //     .then((res) => {
+          //       props.setRefresh(true);
+          //       // res()
+          //   })
+      // const promise1 = Promise.resolve( setPlayer({y:props.y-1, x:props.x}));
+      // const promise2 = Promise.resolve(props.movePlayer({player: player},props.playerMapId))
+      // const promise3 = Promise.resolve(props.setRefresh(true))
+
+
+
+
+        function moveNorth(){
+            Promise.resolve(setPlayer({y:props.y-1, x:props.x}))
+
+
+        }
+        const myPromise =
+            (new Promise(moveNorth))
+            .then((res) => {
+                console.log("reee", res)
+                props.movePlayer({res},props.playerMapId)
+            })
+            .then(props.setRefresh(true))
+
+      // const myPromise = (new Promise(setPlayer({y:props.y-1, x:props.x}, reject)))
+      //     .then(props.movePlayer({player: player},props.playerMapId))
+      //     .then(console.log("N", player))
+
+
   }
   if(direction === "S"){
-      setPlayerK({playery:props.y+1,playerx:props.x})
+      setPlayer({y:props.y+1,x:props.x})
 
   }
    if(direction ==="W"){
-       setPlayerK({playerx:props.x-1, playery:props.y})
+       setPlayer({x:props.x-1, y:props.y})
 
    }
     if(direction ==="E"){
-        setPlayerK({playerx:props.x+1, playery:props.y})
+        setPlayer({x:props.x+1, y:props.y})
 
     }
-    console.log("player that is sent off to the server", playerK)
+    // console.log("player that is sent off to the server", player)
+    //
+    // props.movePlayer({player: player},props.playerMapId)
 
-    props.movePlayer({player: playerK},props.playerMapId)
-    props.setRefresh(true);
 
 
 
@@ -62,10 +108,10 @@ function moverDirection(direction) {
     return(
         <>
             <div>KeyPad</div>
-            <button onClick={() => {moverDirection("N")}}>N</button>
-            <button onClick={() => {moverDirection("S")}}>S</button>
-            <button onClick={() => {moverDirection("E")}}>E</button>
-            <button onClick={() => {moverDirection("W")}}>W</button>
+            <button onClick={() => {moveDirection("N")}}>N</button>
+            <button onClick={() => {moveDirection("S")}}>S</button>
+            <button onClick={() => {moveDirection("E")}}>E</button>
+            <button onClick={() => {moveDirection("W")}}>W</button>
             </>
     )
 }
