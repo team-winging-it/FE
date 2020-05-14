@@ -99,7 +99,7 @@ const GameDisplay = (props) =>
 
         ):(<div>Loading</div>)}
         <div>
-          <Keypad   setPlayer={setPlayer} player = {player}/>
+          <Keypad   setPlayer={setPlayer} player = {player} grid = {grid}/>
         </div>
         </>
 
