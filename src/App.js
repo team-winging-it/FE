@@ -9,6 +9,7 @@ import logo from './logo.svg';
 import { ThemeProvider } from 'pcln-design-system';
 import FormikLoginForm from './components/auth/login.js';
 import Display from './components/Display/display.js';
+import FormikRegForm from "./components/auth/register.js";
 
 export const theme = {
   primary: {
@@ -60,6 +61,7 @@ function App() {
       <Router>
         <Route exact path="/" component={FormikLoginForm} />
         <Route path="/display/" component={Display} />
+        <Route path="/register/" component={FormikRegForm}/>
       </Router>
     </ThemeProvider>
   );
