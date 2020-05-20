@@ -1,7 +1,6 @@
 import axios from 'axios';
 import axiosWithAuth from '../utilities/axiosWithAuth';
 import { ERROR, types } from './index';
-require("dotenv").config();
 
 const {
   LOGIN_START,
@@ -18,7 +17,12 @@ const {
 
 } = types;
 
-const Url = "http://localhost:9000"
+const Url = process.env.REACT_APP_URL || "http://localhost:9000";
+const apiClient = process.env.REACT_APP_CLIENT || "doge";
+const apiSecret = process.env.REACT_APP_SECRET || "doge";
+
+console.log(process.env.REACT_APP_URL, process.env.REACT_APP_CLIENT)
+
 
 
 export const loginUser = (data, history) => {
@@ -41,7 +45,7 @@ export const loginUser = (data, history) => {
       data: bodyData,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${btoa('doge:doge')}`
+        Authorization: `Basic ${btoa(`${apiClient}:${apiSecret}`)}`
       }
     })
       .then(res => {
@@ -71,7 +75,7 @@ export const registerUser = (data, history) => dispatch => {
     url: `${Url}/users/register`,
     data: data,
     headers: {
-      Authorization: `Basic ${btoa('doge:doge')}`
+      Authorization: `Basic ${btoa(`${apiClient}:${apiSecret}`)}`
     }
 
   })
