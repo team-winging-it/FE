@@ -22,6 +22,11 @@ const {
 
 } = types;
 
+const Url = process.env.REACT_APP_URL || "http://localhost:9000";
+const apiClient = process.env.REACT_APP_CLIENT || "doge";
+const apiSecret = process.env.REACT_APP_SECRET || "doge";
+
+
 export const generateMap = userid => {
   const token = localStorage.getItem('token');
 
@@ -29,7 +34,7 @@ export const generateMap = userid => {
     dispatch({ type: MAP_GEN_START });
     return axios({
       method: 'GET',
-      url: `http://localhost:9000/users/test/${userid}`,
+      url: `${Url}/users/test/${userid}`,
       headers: {
         Authorization: token
       }
@@ -53,7 +58,7 @@ export const getMap = userid => {
     dispatch({ type: MAP_GET_START });
     return axios({
       method: 'GET',
-      url: `http://localhost:9000/users/getmap/${userid}`,
+      url: `${Url}/users/getmap/${userid}`,
       headers: {
         Authorization: token
       }
@@ -82,7 +87,7 @@ export const getPlayerLocation = mapid => {
     dispatch({ type: GET_PLAYER_LOCATION_START });
     return axios({
       method: 'GET',
-      url: `http://localhost:9000/users/playerlocation/${mapid}`,
+      url: `${Url}/users/playerlocation/${mapid}`,
       headers: {
         Authorization: token
       }
@@ -106,7 +111,7 @@ export const movePlayer = (player, mapid) => {
 
     return axios({
       method: 'PUT',
-      url: `http://localhost:9000/users/moveplayer/${mapid}`,
+      url: `${Url}/users/moveplayer/${mapid}`,
       data: player,
       headers: {
         Authorization: token

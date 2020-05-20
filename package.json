@@ -9,7 +9,7 @@
     "axios": "^0.19.0",
     "bluebird": "^3.7.2",
     "cra-template": "1.0.0",
-    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^1.8.0",
     "formik": "^2.1.1",
     "pcln-design-system": "^3.3.0",
     "react": "^16.12.0",
