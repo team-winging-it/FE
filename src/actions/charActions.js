@@ -22,9 +22,9 @@ const {
 
 } = types;
 
-const Url = process.env.REACT_APP_URL || "http://localhost:9000";
-const apiClient = process.env.REACT_APP_CLIENT || "doge";
-const apiSecret = process.env.REACT_APP_SECRET || "doge";
+const Url = process.env.REACT_APP_URL || "https://mudadventurebackend.herokuapp.com";
+const apiClient = process.env.REACT_APP_CLIENT || "fdgewtek,";
+const apiSecret = process.env.REACT_APP_SECRET || "dsfgdert";
 
 
 export const generateMap = userid => {
