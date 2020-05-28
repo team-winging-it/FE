@@ -19,6 +19,8 @@ const persistConfig = {
   storage,
 }
 
+console.log(process.env.AUTH_CLIENT)
+console.log(process.env.REACT_APP_CLIENT)
 //Persist combined reducers
 const persistedReducer = persistReducer(persistConfig, combineReducers)
 //Store now has access to persisted reducers

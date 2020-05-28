@@ -4,7 +4,7 @@ export const Container = styled.div`
   justify-items: center;
   display: flex;
   justify-content: center;
-  background: #282e74;
+  background: #0a0;
   .map {
     width: 60%;
     @media (max-width: 1024px) {
@@ -69,6 +69,17 @@ export const Container = styled.div`
 
   .submit-btn {
     color: white;
+    width: 122px;
+    height: 48px;
+    margin: 40px;
+    background: ${props => props.theme.secondary.darkTeal};
+
+    &:hover {
+      background: ${props => props.theme.secondary.lightTeal};
+    }
+  }
+  .reg-btn{
+     color: white;
     width: 122px;
     height: 48px;
     margin: 40px;
