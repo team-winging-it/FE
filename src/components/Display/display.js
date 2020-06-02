@@ -25,7 +25,7 @@ const Display = (props) => {
   return (
     <Container className = "container">
       {!render === true ? (<>
-    <h>Load your map</h>
+    <h>List of Maps</h>
     <div classname = "buttonContainer">
       <Button size='medium'onClick={function generateRefresh() { props.generateMap(props.userid); setRefresh(true);}}>Generate</Button>
     <Button size='medium' onClick={() => props.getMap(props.userid) }>GetMap</Button>
