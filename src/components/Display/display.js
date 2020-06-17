@@ -25,12 +25,12 @@ const Display = (props) => {
   return (
     <Container className = "container">
       {!render === true ? (<>
-    <h>List of Maps</h>
+    <h className = "title ">List of Maps</h>
     <div classname = "buttonContainer">
       <Button size='medium'onClick={function generateRefresh() { props.generateMap(props.userid); setRefresh(true);}}>Generate</Button>
     <Button size='medium' onClick={() => props.getMap(props.userid) }>GetMap</Button>
     </div>
-      <div className="mapContainer">
+      <div className="mapContainer" style={{ height: `100%`, color: 'gray'} }>
      { props.maps.map(n => (
          <Button className = "mapButton" variation="outline" color= "black" onClick = { function loadMap(){ setRender(true); setMapId(n.mapid);} }>
            {n.mapid}
@@ -38,7 +38,9 @@ const Display = (props) => {
       </div>
        </> ):
           (
-            <GameDisplay mapid = {mapId} />
+          <div >
+            <GameDisplay className = "dungeonCon" mapid = {mapId} />
+            </div>
         )}
     </Container>
   );

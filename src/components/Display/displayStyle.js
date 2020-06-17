@@ -20,9 +20,19 @@ export const Container = styled.div`
     border-color: white;
     border-width: 5px;
     width: 70%;
+    background: gray;
   }
   .mapButton{
   margin: 10px;
   width: 90%;
+  background: lightgray;
+  }
+
+  .title{
+  color: white;
+  font-size: 3rem;
+  }
+  .dungeonCon{
+  height: 70%;
   }
 `;

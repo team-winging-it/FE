@@ -1,13 +1,15 @@
 import React ,{useEffect, useState}from "react";
 import {connect} from "react-redux";
 import {movePlayer, getPlayerLocation, setRefresh} from "../../actions/charActions"
+import { Button } from 'pcln-design-system';
 // import {Promise} from "bluebird";
+import styled from 'styled-components';
 
 
 
 
-
-
+//const container = styled.con `
+//display`
 
 
 
@@ -93,10 +95,10 @@ function moveDirection(direction) {
     return(
         <>
             <div>KeyPad</div>
-            <button onClick={() => {moveDirection("N")}}>N</button>
-            <button onClick={() => {moveDirection("S")}}>S</button>
-            <button onClick={() => {moveDirection("E")}}>E</button>
-            <button onClick={() => {moveDirection("W")}}>W</button>
+            <Button onClick={() => {moveDirection("N")}}>N</Button>
+            <Button onClick={() => {moveDirection("S")}}>S</Button>
+            <Button onClick={() => {moveDirection("E")}}>E</Button>
+            <Button onClick={() => {moveDirection("W")}}>W</Button>
             </>
     )
 }
